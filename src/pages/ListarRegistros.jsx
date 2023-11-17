@@ -21,7 +21,7 @@ const ListarRegistros = () => {
 
 
     const [paginaActual, setPaginaActual] = useState(1);
-    const registrosPorPagina = 13;
+    const registrosPorPagina = 9;
 
     const indiceInicial = (paginaActual - 1) * registrosPorPagina;
     const indiceFinal = paginaActual * registrosPorPagina;
@@ -63,7 +63,7 @@ const ListarRegistros = () => {
     return (
         <section className="w-full h-full relative bg-gray-800">
 
-            <div className="w-full flex flex-col md:flex-row justify-between items-center pb-5 bg-white">
+            <div className="w-full flex flex-col md:flex-row justify-between items-center pb-5 bg-[#faf7f2]">
 
                 <div className="flex flex-col md:flex-row mb-4 md:mb-0 gap-10">
                     <button onClick={handleBuscador} type='button' className='uppercase p-2 m-3 text-[#d6a0a0] bg-gray-900 shadow-md rounded-md text-center'>
