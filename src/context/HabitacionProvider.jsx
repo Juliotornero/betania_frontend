@@ -194,16 +194,13 @@ const HabitacionProvider = ({ children }) => {
     }
 
     const submitRegistro = async registro => {
-
         if (registro?.id) {
-            await editarRegistro(registro)
+            await editarRegistro(registro);
         } else {
-            delete registro.id
-            await crearRegistro(registro)
-
-            await actualizarEstadoHabitacion('ocupada');
+            delete registro.id;
+            // Pasa el tipo de registro al crear el registro
+            await crearRegistro(registro, registro.tipoRegistro);
         }
-
     }
 
     const actualizarEstadoHabitacion = async (nuevoEstado) => {
@@ -229,35 +226,41 @@ const HabitacionProvider = ({ children }) => {
 
             navigate('/habitaciones')
 
-            // Resto del código...
         } catch (error) {
             console.log(error);
         }
     };
 
-    const crearRegistro = async registro => {
+    const crearRegistro = async (registro, tipoRegistro) => {
         try {
             const token = localStorage.getItem('token');
-            if (!token) return
-
+            if (!token) return;
+    
             const config = {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`
                 }
             }
-
-            const { data } = await clienteAxios.post('/registros', registro, config)
-
-            //Agregando registro al state
-            const habitacionActualizada = { ...habitacion }
-            habitacionActualizada.registros = [...habitacion.registros, data]
-            setHabitacion(habitacionActualizada)
-
-            setModalFormularioRegistro(false)
-
+    
+            const { data } = await clienteAxios.post('/registros', registro, config);
+    
+            // Agregando registro al state
+            const habitacionActualizada = { ...habitacion };
+            habitacionActualizada.registros = [...habitacion.registros, data];
+            setHabitacion(habitacionActualizada);
+    
+            // Si el tipo de registro es "reservar", actualizar el estado a "reservada"
+            if (tipoRegistro === 'reservar') {
+                await actualizarEstadoHabitacion('reservada');
+            } else {
+                // Si no, actualizar el estado a "ocupada"
+                await actualizarEstadoHabitacion('ocupada');
+            }
+    
+            setModalFormularioRegistro(false);
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 

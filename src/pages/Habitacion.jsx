@@ -67,18 +67,18 @@ const Habitacion = () => {
             <p className='font-bold text-xl mt-10 mb-5 uppercase text-center'>Registro actual</p>
 
 
-            {habitacion && habitacion.registros && habitacion.registros.length > 0
-              ?
-              null
-              :
-              <button onClick={handleModalRegistro} type='button' className='flex gap-2 justify-center items-center p-2 m-3 text-[#d6a0a0] bg-gray-900 shadow-md rounded-md w-[250px] text-center'>
+            {(!habitacion.registros || habitacion.registros.length === 0 || habitacion.estado === 'reservada') && (
+              <button
+                onClick={handleModalRegistro}
+                type='button'
+                className='flex gap-2 justify-center items-center p-2 m-3 text-[#d6a0a0] bg-gray-900 shadow-md rounded-md w-[250px] text-center'
+              >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 Nuevo registro
               </button>
-            }
-
+            )}
 
 
             <div className='bg-white shadow mt-10 rounded-lg mb-10 overflow-hidden p-4'>
