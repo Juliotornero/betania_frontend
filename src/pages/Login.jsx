@@ -92,9 +92,9 @@ const Login = () => {
           
 
           <nav className='lg:flex lg:justify-between  max-w-lg lg:mx-auto'>
-            {/* <Link to="registrar" className='block text-center my-5 text-[#d6a0a0] uppercase text-sm'>
+            <Link to="registrar" className='block text-center my-5 text-[#d6a0a0] uppercase text-sm'>
             ¿No tienes una cuenta? Registrate
-            </Link> */}
+            </Link>
 
             <Link to="olvide-password" className='block text-center my-5 text-[#d6a0a0] uppercase text-sm'>
               Olvide mi password

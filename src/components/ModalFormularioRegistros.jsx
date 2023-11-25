@@ -157,7 +157,7 @@ const ModalFormularioRegistros = () => {
                                                 placeholder=''
                                                 value={documento}
                                                 required
-                                                minLength="8"
+                                                maxLength="8"
                                                 onChange={e => setDocumento(e.target.value)}
                                             />
                                         </div>
@@ -223,6 +223,7 @@ const ModalFormularioRegistros = () => {
                                                 type="text"
                                                 className='border-2 w-full p-2 mt-2 placeholder:gray-400 rounded-md'
                                                 placeholder=''
+                                                maxLength="9"
                                                 value={celular}
                                                 onChange={e => setCelular(e.target.value)}
                                             />
